@@ -1,0 +1,8 @@
+- name: "Unmask \"{{ item }}\" atom"
+  ansible.builtin.lineinfile:
+    path: /etc/portage/package.unmask
+    line: "{{ item }}"
+    create: yes
+    owner: root
+    group: root
+    mode: 0644

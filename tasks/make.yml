@@ -1,0 +1,14 @@
+- set_fact:
+    line: "{{ make_line.name }}=\""
+
+- set_fact:
+    line: "{{ line + item }}{% if not ansible_loop.last %} {% else %}\"{% endif %}"
+  loop: "{{ make_line.value }}"
+  loop_control:
+    extended: yes
+
+- name: "Write {{ make_line.name }} to make.conf"
+  ansible.builtin.lineinfile:
+    path: "/etc/portage/make.conf"
+    line: "{{ line }}"
+    regexp: "^{{ make_line.name }}"

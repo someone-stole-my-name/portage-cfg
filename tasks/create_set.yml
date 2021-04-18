@@ -1,0 +1,20 @@
+- name: "Add packages to \"{{ set.name }}\" set"
+  ansible.builtin.lineinfile:
+    path: "/etc/portage/sets/{{ set.name }}"
+    line: "{{ package }}"
+    create: yes
+    owner: root
+    group: root
+    mode: 0644
+  loop: "{{ set.packages }}"
+  loop_control:
+    loop_var: package
+
+- name: "Add \"{{ set.name }}\" set to \"/var/lib/portage/world_sets\""
+  ansible.builtin.lineinfile:
+    path: "/var/lib/portage/world_sets"
+    line: "@{{ set.name }}"
+    create: yes
+    owner: root
+    group: portage
+    mode: 0644

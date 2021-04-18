@@ -1,0 +1,8 @@
+- name: "Mask \"{{ item }}\""
+  ansible.builtin.lineinfile:
+    path: /etc/portage/package.mask
+    line: "{{ item }}"
+    create: yes
+    owner: root
+    group: root
+    mode: 0644

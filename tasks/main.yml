@@ -1,0 +1,47 @@
+- include: accept_keyword.yml
+  loop: "{{ portage_accept_keywords }}"
+
+- include: accept_license.yml
+  loop: "{{ portage_accept_license }}"
+
+- include: unmask.yml
+  loop: "{{ portage_unmask }}"
+
+- include: mask.yml
+  loop: "{{ portage_mask }}"
+
+- name: Ensure sets directory
+  file:
+    path: /etc/portage/sets
+    state: directory
+    group: root
+    owner: root
+    mode: 0755
+  when: portage_sets | length > 0
+
+- include: create_set.yml
+  loop: "{{ portage_sets }}"
+  loop_control:
+    loop_var: set
+
+- name: Ensure package.use directory
+  file:
+    path: /etc/portage/package.use
+    state: directory
+    group: root
+    owner: root
+    mode: 0755
+  when: portage_package_use | length > 0
+
+- include: package_use.yml
+  loop: "{{ portage_package_use }}"
+  loop_control:
+    loop_var: package_use
+
+- include: world.yml
+  loop: "{{ portage_world }}"
+
+- include: make.yml
+  loop: "{{ portage_make }}"
+  loop_control:
+    loop_var: make_line

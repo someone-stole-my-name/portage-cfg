@@ -1,0 +1,8 @@
+- name: "Accept \"{{ item.keyword }}\" for \"{{ item.atom }}\" atom"
+  ansible.builtin.lineinfile:
+    path: /etc/portage/package.accept_keywords
+    line: "{{ item.atom }} {{ item.keyword }}"
+    create: yes
+    owner: root
+    group: root
+    mode: 0644

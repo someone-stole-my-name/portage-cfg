@@ -1,0 +1,8 @@
+- name: "Accept \"{{ item.license }}\" for \"{{ item.atom }}\" atom"
+  ansible.builtin.lineinfile:
+    path: /etc/portage/package.license
+    line: "{{ item.atom }} {{ item.license }}"
+    create: yes
+    owner: root
+    group: root
+    mode: 0644

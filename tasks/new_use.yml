@@ -1,0 +1,25 @@
+- name: Add comments
+  ansible.builtin.lineinfile:
+    path: "/etc/portage/package.use/{{ package_use.name }}"
+    line: "# {{ comment }}"
+    create: yes
+    owner: root
+    group: root
+    mode: 0644
+  loop: "{{ item.comments }}"
+  loop_control:
+    loop_var: comment
+  when: item.comments is defined and item.comments | length > 0
+
+- name: Add use
+  ansible.builtin.lineinfile:
+    path: "/etc/portage/package.use/{{ package_use.name }}"
+    line: "{{ item.use }}"
+    create: yes
+    owner: root
+    group: root
+    mode: 0644
+
+- ansible.builtin.lineinfile:
+    path: "/etc/portage/package.use/{{ package_use.name }}"
+    line: ""

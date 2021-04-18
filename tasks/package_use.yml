@@ -1,0 +1,22 @@
+  # - name: ansible
+  #   uses:
+  #     - use: ">=net-libs/zeromq-4.3.3-r1 drafts"
+  #       comments:
+  #         - required by dev-python/pyzmq-20.0.0::gentoo[-test]
+  #         - required by dev-python/jupyter_client-6.1.11::gentoo
+  #         - required by dev-python/ipykernel-5.5.0::gentoo[-test]
+  #         - required by dev-python/ipyparallel-6.3.0-r1::gentoo[-test]
+  #         - required by dev-python/ipython-7.21.0-r1::gentoo[smp]
+  #         - required by dev-python/netaddr-0.8.0::gentoo[cli]
+  #         - required by app-admin/ansible-base-2.10.7::gentoo
+  #         - required by app-admin/ansible-2.10.7::gentoo[-test]
+  #         - required by ansible (argument)
+  #     - use: dev-python/ipython -qt5
+  #       comments:
+  #         - This pulls a bunch of crap
+
+- name: "Add uses for \"{{ package_use.name }}\""
+  include: new_use.yml
+  loop: "{{ package_use.uses }}"
+  loop_control:
+    extended: yes

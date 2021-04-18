@@ -1,0 +1,8 @@
+- name: "Add \"{{ item }}\" to \"/var/lib/portage/world\""
+  ansible.builtin.lineinfile:
+    path: "/var/lib/portage/world"
+    line: "{{ item }}"
+    create: yes
+    owner: root
+    group: portage
+    mode: 0644
