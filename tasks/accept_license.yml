@@ -1,6 +1,14 @@
+- name: Set target path
+  set_fact:
+    target_path: "/etc/portage/package.license"
+
+- name: Check if the target path is a directory and adjust it
+  include_tasks:
+    file: check_if_dir.yml
+
 - name: "Accept \"{{ item.license }}\" for \"{{ item.atom }}\" atom"
   ansible.builtin.lineinfile:
-    path: /etc/portage/package.license
+    path: "{{ target_path }}"
     line: "{{ item.atom }} {{ item.license }}"
     create: yes
     owner: root

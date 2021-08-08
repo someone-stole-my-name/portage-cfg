@@ -1,0 +1,11 @@
+# Mutates incoming target_path if needed. To be used for paths that could be directories
+- name: "Check if {{ target_path }} is a directory and determine the file"
+  block:
+    - name: Gather stat for directory
+      stat:
+        path: "{{ target_path }}"
+      register: _target_path_stat
+    - name: Set the path to file inside the directory
+      set_fact:
+        target_path: "{{ target_path }}/{{ portage_ansible_managed_filename }}"
+      when: _target_path_stat.stat.isdir

@@ -45,6 +45,7 @@ portage_make:
       - en
       - es
 ```
+- `portage_ansible_managed_filename`: in case paths like `/etc/portage/package.accept_keywords` are a directory, a file with this name will be created in the corresponding path to include the requested line. [Default: `ansible_managed`]
 
 License
 -------

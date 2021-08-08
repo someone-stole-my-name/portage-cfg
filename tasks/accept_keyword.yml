@@ -1,6 +1,14 @@
+- name: Set target path
+  set_fact:
+    target_path: "/etc/portage/package.accept_keywords"
+
+- name: Check if the target path is a directory and adjust it
+  include_tasks:
+    file: check_if_dir.yml
+
 - name: "Accept \"{{ item.keyword }}\" for \"{{ item.atom }}\" atom"
   ansible.builtin.lineinfile:
-    path: /etc/portage/package.accept_keywords
+    path: "{{ target_path }}"
     line: "{{ item.atom }} {{ item.keyword }}"
     create: yes
     owner: root
