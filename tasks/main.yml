@@ -1,8 +1,12 @@
 - include: accept_keyword.yml
   loop: "{{ portage_accept_keywords }}"
+  loop_control:
+    loop_var: package_accept_keywords
 
 - include: accept_license.yml
   loop: "{{ portage_accept_license }}"
+  loop_control:
+    loop_var: package_accept_license
 
 - include: unmask.yml
   loop: "{{ portage_unmask }}"

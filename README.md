@@ -11,15 +11,19 @@ Role Variables
 portage_accept_keywords:
   - atom: app-admin/ansible
     keyword: ~amd64
+    name: some_filename
 ```
+    If `name` is specified, file with that name is created inside the `portage.accept_keywords` directory.
 - `portage_accept_license`: List of licenses to accept. Example:
 ```yaml
 portage_accept_license:
   - atom: app-editors/visual-studio-code
     license: MS-vscode-EULA license
+    name: some_filename
 ```
-- `portage_unmask`: List of lines to add to `package.unmask` file.
-- `portage_mask`: List of lines to add to `package.mask` file.
+    If `name` is specified, file with that name is created inside the `portage.accept_license` directory.
+- `portage_unmask`: List of lines to add to `package.unmask` file or to a file inside that directory.
+- `portage_mask`: List of lines to add to `package.mask` file or to a file inside that directory.
 - `portage_sets`: List of sets to create, each set is also added to `world_sets`. Example:
 ```yaml
 portage_sets:

@@ -1,15 +1,21 @@
-- name: Set target path
+- name: Set default target path
   set_fact:
     target_path: "/etc/portage/package.license"
+
+- name: Set target path if provided
+  set_fact:
+    target_path: "{{ target_path }}/{{ package_accept_license.name }}"
+  when: package_accept_license.name is defined
 
 - name: Check if the target path is a directory and adjust it
   include_tasks:
     file: check_if_dir.yml
+  when: package_accept_license.name is not defined
 
-- name: "Accept \"{{ item.license }}\" for \"{{ item.atom }}\" atom"
+- name: "Accept \"{{ package_accept_license.license }}\" for \"{{ package_accept_license.atom }}\" atom"
   ansible.builtin.lineinfile:
     path: "{{ target_path }}"
-    line: "{{ item.atom }} {{ item.license }}"
+    line: "{{ package_accept_license.atom }} {{ package_accept_license.license }}"
     create: yes
     owner: root
     group: root

@@ -1,15 +1,22 @@
-- name: Set target path
+- name: Set default target path
   set_fact:
     target_path: "/etc/portage/package.accept_keywords"
+
+- name: Set target path if provided
+  set_fact:
+    target_path: "{{ target_path }}/{{ package_accept_keywords.name }}"
+  when: package_accept_keywords.name is defined
 
 - name: Check if the target path is a directory and adjust it
   include_tasks:
     file: check_if_dir.yml
+  when: package_accept_keywords.name is not defined
 
-- name: "Accept \"{{ item.keyword }}\" for \"{{ item.atom }}\" atom"
+
+- name: "Accept \"{{ package_accept_keywords.keyword }}\" for \"{{ package_accept_keywords.atom }}\" atom"
   ansible.builtin.lineinfile:
     path: "{{ target_path }}"
-    line: "{{ item.atom }} {{ item.keyword }}"
+    line: "{{ package_accept_keywords.atom }} {{ package_accept_keywords.keyword }}"
     create: yes
     owner: root
     group: root

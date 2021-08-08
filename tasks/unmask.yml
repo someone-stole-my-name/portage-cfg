@@ -1,4 +1,4 @@
-- name: Set target path
+- name: Set default target path
   set_fact:
     target_path: "/etc/portage/package.unmask"
 
