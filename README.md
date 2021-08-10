@@ -9,7 +9,6 @@ Role Variables
 - `portage_ansible_managed_filename`: In cases when paths like `/etc/portage/package.accept_keywords` are directories, a file with this name will be created in the corresponding path to include the requested line. [Default: `ansible_managed`]
 
 - `portage_accept_keywords`: List of keywords to accept. Example:
-
 ```yaml
 portage_accept_keywords:
   - atom: app-admin/ansible
