@@ -5,7 +5,8 @@
       stat:
         path: "{{ target_path }}"
       register: _target_path_stat
+
     - name: Set the path to file inside the directory
       set_fact:
         target_path: "{{ target_path }}/{{ portage_ansible_managed_filename }}"
-      when: _target_path_stat.stat.isdir
+      when: _target_path_stat.stat.exists and _target_path_stat.stat.isdir

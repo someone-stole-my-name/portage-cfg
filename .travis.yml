@@ -1,29 +1,19 @@
 ---
 language: python
 python: "2.7"
-
-# Use the new container infrastructure
-sudo: false
-
-# Install ansible
+sudo: required
 addons:
   apt:
     packages:
-    - python-pip
-
+      - python-pip
 install:
-  # Install ansible
-  - pip install ansible
-
-  # Check ansible version
-  - ansible --version
-
-  # Create ansible.cfg with correct roles_path
+  - pip install ansible molecule molecule-docker
+  - molecule --version
   - printf '[defaults]\nroles_path=../' >ansible.cfg
 
 script:
-  # Basic role syntax check
   - ansible-playbook tests/test.yml -i tests/inventory --syntax-check
+  - molecule test
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/

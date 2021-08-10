@@ -1,0 +1,5 @@
+- hosts: GENTOO
+  tasks:
+    - file:
+        path: /etc/portage/package.unmask
+        state: directory
