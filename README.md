@@ -1,4 +1,4 @@
-portage-cfg
+portage-cfg [![Molecule](https://github.com/someone-stole-my-name/portage-cfg/actions/workflows/molecule.yml/badge.svg)](https://github.com/someone-stole-my-name/portage-cfg/actions/workflows/molecule.yml)
 =========
 
 A role to manage a bunch of portage config files.
