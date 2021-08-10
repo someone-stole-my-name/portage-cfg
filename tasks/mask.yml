@@ -1,6 +1,14 @@
+- name: Set target path
+  set_fact:
+    target_path: "/etc/portage/package.mask"
+
+- name: Check if the target path is a directory and adjust it
+  include_tasks:
+    file: check_if_dir.yml
+
 - name: "Mask \"{{ item }}\""
   ansible.builtin.lineinfile:
-    path: /etc/portage/package.mask
+    path: "{{ target_path }}"
     line: "{{ item }}"
     create: yes
     owner: root

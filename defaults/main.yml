@@ -8,3 +8,4 @@ portage_sets: []
 portage_package_use: []
 portage_world: []
 portage_make: []
+portage_ansible_managed_filename: "ansible_managed"

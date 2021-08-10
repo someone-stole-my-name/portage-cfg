@@ -1,6 +1,14 @@
+- name: Set default target path
+  set_fact:
+    target_path: "/etc/portage/package.unmask"
+
+- name: Check if the target path is a directory and adjust it
+  include_tasks:
+    file: check_if_dir.yml
+
 - name: "Unmask \"{{ item }}\" atom"
   ansible.builtin.lineinfile:
-    path: /etc/portage/package.unmask
+    path: "{{ target_path }}"
     line: "{{ item }}"
     create: yes
     owner: root
