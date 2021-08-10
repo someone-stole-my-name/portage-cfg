@@ -6,24 +6,30 @@ A role to manage a bunch of portage config files.
 Role Variables
 --------------
 
+- `portage_ansible_managed_filename`: In cases when paths like `/etc/portage/package.accept_keywords` are directories, a file with this name will be created in the corresponding path to include the requested line. [Default: `ansible_managed`]
+
 - `portage_accept_keywords`: List of keywords to accept. Example:
+
 ```yaml
 portage_accept_keywords:
   - atom: app-admin/ansible
     keyword: ~amd64
+    # If `name` is specified, file with that name is created inside the `portage.accept_keywords` directory.
     name: some_filename
 ```
-    If `name` is specified, file with that name is created inside the `portage.accept_keywords` directory.
+
 - `portage_accept_license`: List of licenses to accept. Example:
 ```yaml
 portage_accept_license:
   - atom: app-editors/visual-studio-code
     license: MS-vscode-EULA license
+    # If `name` is specified, file with that name is created inside the `portage.accept_keywords` directory.
     name: some_filename
 ```
-    If `name` is specified, file with that name is created inside the `portage.accept_license` directory.
+
 - `portage_unmask`: List of lines to add to `package.unmask` file or to a file inside that directory.
 - `portage_mask`: List of lines to add to `package.mask` file or to a file inside that directory.
+
 - `portage_sets`: List of sets to create, each set is also added to `world_sets`. Example:
 ```yaml
 portage_sets:
@@ -40,7 +46,9 @@ portage_package_use:
         comments:
           - This pulls a bunch of crap
 ```
+
 - `portage_world`: List of packages to add to `world` file.
+
 - `portage_make`: List of custom lines to append to `make.conf`. Example:
 ```yaml
 portage_make:
@@ -49,9 +57,7 @@ portage_make:
       - en
       - es
 ```
-- `portage_ansible_managed_filename`: in case paths like `/etc/portage/package.accept_keywords` are a directory, a file with this name will be created in the corresponding path to include the requested line. [Default: `ansible_managed`]
 
 License
 -------
-
 BSD

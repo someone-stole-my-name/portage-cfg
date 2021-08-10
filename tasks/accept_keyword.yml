@@ -12,7 +12,6 @@
     file: check_if_dir.yml
   when: package_accept_keywords.name is not defined
 
-
 - name: "Accept \"{{ package_accept_keywords.keyword }}\" for \"{{ package_accept_keywords.atom }}\" atom"
   ansible.builtin.lineinfile:
     path: "{{ target_path }}"

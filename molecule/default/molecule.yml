@@ -1,0 +1,12 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+platforms:
+  - name: GENTOO
+    image: gentoo/stage3:amd64
+provisioner:
+  name: ansible
+verifier:
+  name: ansible

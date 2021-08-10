@@ -1,0 +1,43 @@
+---
+- name: Assertions
+  hosts: GENTOO
+  vars:
+    - _assert:
+        - that: /etc/portage/make.conf
+          contains: "LINGUAS=\"en es\""
+
+        - that: /etc/portage/package.accept_keywords
+          contains: "app-admin/ansible ~amd64"
+
+        - that: /etc/portage/package.license/vscode
+          contains: "app-editors/visual-studio-code MS-vscode-EULA license"
+
+        - that: /etc/portage/package.mask
+          contains: "app-admin/ansible"
+
+        - that: /etc/portage/package.unmask/ansible_managed
+          contains: "app-editors/visual-studio-code"
+
+        - that: /etc/portage/package.use/ansible
+          contains: "# This pulls a bunch of crap"
+
+        - that: /etc/portage/package.use/ansible
+          contains: "dev-python/ipython -qt5"
+
+        - that: /etc/portage/sets/fonts
+          contains: "media-fonts/corefonts"
+
+        - that: /var/lib/portage/world_sets
+          contains: "@fonts"
+
+        - that: /var/lib/portage/world
+          contains: app-admin/ansible
+  tasks:
+    - lineinfile:
+        name: "{{ item.that }}"
+        line: "{{ item.contains }}"
+        state: present
+      check_mode: yes
+      register: ass
+      failed_when: (ass is changed) or (ass is failed)
+      loop: "{{ _assert }}"

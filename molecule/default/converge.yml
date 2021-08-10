@@ -1,0 +1,41 @@
+---
+- hosts: GENTOO
+  vars:
+    - portage_world:
+        - app-admin/ansible
+
+    - portage_accept_keywords:
+        - atom: app-admin/ansible
+          keyword: ~amd64
+
+    - portage_accept_license:
+        - atom: app-editors/visual-studio-code
+          license: MS-vscode-EULA license
+          name: vscode
+
+    - portage_unmask:
+        - app-editors/visual-studio-code
+
+    - portage_mask:
+        - app-admin/ansible
+
+    - portage_package_use:
+        - name: ansible
+          uses:
+            - use: dev-python/ipython -qt5
+              comments:
+                - This pulls a bunch of crap
+
+    - portage_sets:
+        - name: fonts
+          packages:
+            - media-fonts/corefonts
+
+    - portage_make:
+        - name: LINGUAS
+          value:
+            - en
+            - es
+
+  roles:
+    - portage-cfg
