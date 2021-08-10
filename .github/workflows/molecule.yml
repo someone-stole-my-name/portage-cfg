@@ -19,4 +19,4 @@ jobs:
       - run: |
           python3 -m pip install --upgrade pip
           python3 -m pip install ansible molecule molecule-docker
-      - run: cd ${$GITHUB_WORKSPACE} && molecule test
+      - run: cd ${GITHUB_WORKSPACE} && molecule test
