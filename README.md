@@ -28,7 +28,6 @@ portage_accept_license:
 
 - `portage_unmask`: List of lines to add to `package.unmask` file or to a file inside that directory.
 - `portage_mask`: List of lines to add to `package.mask` file or to a file inside that directory.
-
 - `portage_sets`: List of sets to create, each set is also added to `world_sets`. Example:
 ```yaml
 portage_sets:
