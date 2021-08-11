@@ -1,4 +1,4 @@
-portage-cfg [![Molecule](https://github.com/someone-stole-my-name/portage-cfg/actions/workflows/molecule.yml/badge.svg)](https://github.com/someone-stole-my-name/portage-cfg/actions/workflows/molecule.yml)
+portage-cfg [![GitHub](https://github.com/someone-stole-my-name/portage-cfg/actions/workflows/molecule.yml/badge.svg)](https://github.com/someone-stole-my-name/portage-cfg/actions/workflows/molecule.yml) [![Travis](https://www.travis-ci.com/someone-stole-my-name/portage-cfg.svg?branch=main)](https://github.com/someone-stole-my-name/portage-cfg/blob/main/.travis.yml)
 =========
 
 A role to manage a bunch of portage config files.
